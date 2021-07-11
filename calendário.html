@@ -1,0 +1,333 @@
+<! DOCTYPE html >
+<! - original: https: //codepen.io/boudra/pen/raErwP ->
+< html  lang = " en " >
+< cabeça >
+    < meta  charset = " UTF-8 " >
+    < meta  name = " viewport " content = " width = device-width, initial-scale = 1.0 " >
+    < title > Calendário </ title >
+
+    < estilo >
+        corpo {
+    família da fonte :  'Arial' , sans-serif;
+    cor de fundo :  # fff ;
+}
+
+. wrapper {
+    display : flex;
+    alinhar-itens : centro;
+    justificar o conteúdo : centro;
+  direção flexível : coluna;
+  altura mínima :  100 % ;
+}
+
+botão :: -moz-focus-inner {
+  fronteira :  0 ;
+  preenchimento :  0 ;
+}
+
+# calendari {
+    margem :   0 automático;
+    / * altura: 330px; * /
+    / * largura: 350px; * /
+    tamanho da fonte :  14 px ;
+    / * box-shadow: 0px 1px 4px rgba (0,0,0,0.4); * /
+}
+mesa {
+    colapso da fronteira : colapso;
+    layout da mesa : fixo;
+    sombra da caixa :  0 px  1 px  3 px  rgba ( 0 , 0 , 0 , 0,2 );
+    cor de fundo :  # fff ;
+    posição : absoluta;
+
+
+}
+
+
+td , th {
+    alinhamento de texto : centro;
+    cor de fundo :  # fff ;
+}
+th {
+    preenchimento :  10 px ;
+}
+tr : primeiro filho  th {
+    tamanho da fonte :  20 px ;
+    peso da fonte : negrito;
+    borda esquerda : nenhum;
+    borda superior : nenhum;
+}
+td : último filho ,  th : último filho {
+  border-right : nenhum;
+}
+
+th {
+    borda superior :  rgba sólido de 1 px ( 0 , 0 , 0 , 0,1 );
+    borda direita :  1 px sólido rgba ( 0 , 0 , 0 , 0,1 );
+    cor de fundo :  # 9b59b6 ;
+    cor :  # fff ;
+    sombra do texto :  0 px  -1 px  0 px  rgba ( 0 , 0 , 0 , 0,2 );
+    peso da fonte : normal;
+}
+th . qualquer {
+    tamanho da fonte :  12 px ;
+    peso da fonte : normal;
+    display : bloco;
+    sombra do texto : nenhum;
+    cor :  rgba ( 0 , 0 , 0 , 0,4 );
+}
+tr : nth-child ( 2 ) th {
+    preenchimento :  5 px ;
+}
+td {
+    preenchimento :  0 ;
+    borda inferior :  1 px sólido rgba ( 0 , 0 , 0 , 0,05 );
+}
+td > span {
+    cor :  # 555 ;
+    preenchimento :  10 px ;
+    display : bloco;
+    borda :  2 px totalmente transparente;
+    transição : suavidade da borda de 0,3 s ;
+}
+
+td : enésimo filho ( par ) > span {
+    cor de fundo :  rgba ( 0 , 0 , 0 , 0,02 );
+}
+td : último filho > span ,
+td : enésimo filho ( 6 ) > span {
+    cor :  # 9b59b6 ;
+}
+td . avui > span {
+    peso da fonte : negrito;
+    cor de fundo :  # 9b59b6 ;
+    cor :  # fff ;
+    borda :  rgba sólido de 2 px ( 0 , 0 , 0 , 0,1 );
+}
+td . fora  >  span {
+    opacidade :  0,2 ;
+}
+td  >  span : hover {
+    plano de fundo :  # a57cb6 ;
+    cor :  # fff ;
+}
+. boto-próxima , . boto-prev {
+    fundo :  rgba ( 0 , 0 , 0 , 0,1 );
+    cor :  # fff ;
+    família de fontes : herdar;
+    fronteira : nenhum;
+    tamanho da fonte :  18 px ;
+    peso da fonte : negrito;
+    sombra de texto : herdar;
+    preenchimento :  2 px  10 px  5 px  10 px ;
+    altura da linha :  1 px ;
+    altura :  30 px ;
+    largura :  30 px ;
+    alinhamento vertical : meio;
+    raio da borda :  100 % ;
+    posição : absoluta;
+    topo :  15 px ;
+}
+. boto-next { right :  10 px ; padding-left :  13 px ; }
+. boto-prev { esquerda :  10 px ; padding-right :  13 px ;}
+. boto-next : hover ,
+. boto-prev : hover {
+    fundo :  rgba ( 0 , 0 , 0 , 0,2 );
+}
+botão : pairar { cursor : ponteiro; }
+botão : foco { esboço : nenhum; }
+
+rodapé {
+  alinhamento de texto : centro;
+  cor :  # ddd ;
+  peso da fonte : normal;
+  sombra do texto :  0 px  -1 px  0 px  rgba ( 0 ,  0 ,  0 , 0,2 );
+  tamanho da fonte :  0,8 em ;
+  preenchimento :  20 px ;
+}
+
+rodapé  a ,
+rodapé  a : link {
+  cor : # fff ;
+  decoração de texto : nenhum;
+}
+    </ estilo >
+</ cabeça >
+< corpo >
+    < div  class = "" >
+        < div  id = " calendari " > </ div >
+      </ div >
+      < script >
+        var  mesos  =  [
+    'Janeiro' ,
+    'Fevereiro' ,
+    'Março' ,
+    'Abril' ,
+    'Maio' ,
+    'Junho' ,
+    'Julho' ,
+    'Agosto' ,
+    'Setembro' ,
+    'Outubro' ,
+    'Novembro' ,
+    'Dezembro'
+] ;
+
+var  dies  =  [
+    'Domingo' ,
+    'segunda' ,
+    'Terça' ,
+    'Quarta' ,
+    'Quinta' ,
+    'Sexta' ,
+    'Sábado'
+] ;
+
+var  dies_abr  =  [
+    'Dom' ,
+    'Seg' ,
+    'ter' ,
+    'Qua' ,
+    'Qui' ,
+    'Sex' ,
+    'Sáb'
+] ;
+
+Número . protótipo . pad  =  função ( num )  {
+    var  str  =  '' ;
+    for ( var  i  =  0 ;  i  <  ( num - this . toString ( ) . length ) ;  i ++ )
+        str  + =  '0' ;
+    return  str  + =  this . toString ( ) ;
+}
+
+função  calendari ( widget ,  dados )
+{
+
+    var  original  =  widget . getElementsByClassName ( 'actiu' ) [ 0 ] ;
+
+    if ( typeof  original  ===  'undefined' )
+    {
+        original  =  documento . createElement ( 'tabela' ) ;
+        original . setAttribute ( 'data-actual' ,
+			      dados . getFullYear ( )  +  '/'  +
+			      dados . getMonth ( ) . pad ( 2 )  +  '/'  +
+			      dados . getDate ( ) . pad ( 2 ) )
+        widget . appendChild ( original ) ;
+    }
+
+    var  diff  =  data  -  nova  data ( original . getAttribute ( 'data-actual' ) ) ;
+
+    diff  =  nova  data ( diff ) . getMonth ( ) ;
+
+    var  e  =  documento . createElement ( 'tabela' ) ;
+
+    e . className  =  diff   ===  0 ? 'amagat-esquerra' : 'amagat-dreta' ;
+    e . innerHTML  =  '' ;
+
+    widget . appendChild ( e ) ;
+
+    e . setAttribute ( 'data-actual' ,
+                   dados . getFullYear ( )  +  '/'  +
+                   dados . getMonth ( ) . pad ( 2 )  +  '/'  +
+                   dados . getDate ( ) . pad ( 2 ) )
+
+    var  fila  =  documento . createElement ( 'tr' ) ;
+    var  titol  =  documento . createElement ( 'th' ) ;
+    titol . setAttribute ( 'colspan' ,  7 ) ;
+
+    var  boto_prev  =  document . createElement ( 'botão' ) ;
+    boto_prev . className  =  'boto-prev' ;
+    boto_prev . innerHTML  =  '& # 9666;' ;
+
+    var  boto_next  =  documento . createElement ( 'botão' ) ;
+    boto_next . className  =  'boto-next' ;
+    boto_next . innerHTML  =  '& # 9656;' ;
+
+    titol . appendChild ( boto_prev ) ;
+    titol . appendChild ( document . createElement ( 'span' ) ) . innerHTML  = 
+        mesos [ dados . getMonth ( ) ]  +  '<span class = "any">'  +  dados . getFullYear ( )  +  '</span>' ;
+
+    titol . appendChild ( boto_next ) ;
+
+    boto_prev . onclick  =  function ( )  {
+        dados . setMonth ( data . getMonth ( )  -  1 ) ;
+        calendari ( widget ,  dados ) ;
+    } ;
+
+    boto_next . onclick  =  function ( )  {
+        dados . setMonth ( data . getMonth ( )  +  1 ) ;
+        calendari ( widget ,  dados ) ;
+    } ;
+
+    fila . appendChild ( titol ) ;
+    e . appendChild ( fila ) ;
+
+    fila  =  documento . createElement ( 'tr' ) ;
+
+    para ( var  i  =  1 ;  i  <  7 ;  i ++ )
+    {
+        fila . innerHTML  + =  '<th>'  +  dies_abr [ i ]  +  '</th>' ;
+    }
+
+    fila . innerHTML  + =  '<th>'  +  dies_abr [ 0 ]  +  '</th>' ;
+    e . appendChild ( fila ) ;
+
+    / * Obtinc el dia que va acabar el mes anterior * /
+    var  inici_mes  =
+        new  Date ( data . getFullYear ( ) ,  data . getMonth ( ) ,  - 1 ) . getDay ( ) ;
+
+    var  real  =  nova  data ( dados . getFullYear ( ) ,
+			  dados . getMonth ( ) ,
+			  - inici_mes ) ;
+
+    / * 6 setmanes por cobrir totes les posiblitats
+     * Quedaria mes consistente alhora de mostrar molts mesos 
+     * en una quadricula * /
+    para ( var  s  =  0 ;  s  <  6 ;  s ++ )
+    {
+        var  fila  =  documento . createElement ( 'tr' ) ;
+
+        para ( var  d  =  1 ;  d  <  8 ;  d ++ )
+        {
+	    var  cela  =  documento . createElement ( 'td' ) ;
+	    var  span  =  document . createElement ( 'span' ) ;
+
+	    cela . appendChild ( span ) ;
+
+            extensão . innerHTML  =  real . getDate ( ) ;
+
+            if ( real . getMonth ( )  ! ==  data . getMonth ( ) )
+                cela . className  =  'fora' ;
+
+            / * Si es avui el decorem * /
+            if ( data . getDate ( )  ==  real . getDate ( )  &&
+	       dados . getMonth ( )  ==  real . getMonth ( ) )
+		cela . className  =  'avui' ;
+
+	    real . setDate ( real . getDate ( ) + 1 ) ;
+            fila . appendChild ( cela ) ;
+        }
+
+        e . appendChild ( fila ) ;
+    }
+
+    setTimeout ( function ( )  {
+        e . className  =  'actiu' ;
+        original . nome da classe  + =
+        diff  ===  0 ? 'amagat-dreta' : 'amagat-esquerra' ;
+    } ,  20 ) ;
+
+    original . className  =  'inactiu' ;
+
+    setTimeout ( função ( ) {
+        var  inactius  =  documento . getElementsByClassName ( 'inactiu' ) ;
+        para ( var  i  =  0 ;  i  <  inactius . comprimento ;  i ++ )
+            widget . removeChild ( inactius [ i ] ) ;
+    } ,  1000 ) ;
+
+}
+
+calendari ( document . getElementById ( 'calendari' ) ,  new  Date ( ) ) ;
+
+    </ script >
+</ corpo >
+</ html >
