@@ -1,0 +1,95 @@
+<! DOCTYPE html >
+< html  lang = " en " >
+< cabeça >
+    < meta  charset = " UTF-8 " >
+    < meta  name = " viewport " content = " width = device-width, initial-scale = 1.0 " >
+    < link  href = " https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap " rel = " stylesheet " >
+
+    < title > Tempo restante em 2020 </ title >
+    < estilo >
+        
+        corpo {
+            alinhamento de texto : centro;
+            família da fonte :  'Fjalla One' , sans-serif;
+            cor de fundo :  # fff ;
+        }
+        . box {
+            display : bloco embutido;
+            display : bloco embutido;
+            cor :  # fff ;
+            preenchimento :  10 px ;
+            raio da borda :  5 px ;
+        }
+        # dias {
+            cor de fundo : # 0f4d4f ;
+        }
+        # horas {
+            cor de fundo : # 4CAF50 ;
+        }
+        # minutos {
+            cor de fundo : # 76250b ;
+        }
+        h2 {
+            display : bloco embutido;
+            margem direita :  10 px ;
+        }
+
+
+    </ estilo >
+</ head >
+< corpo >
+    < div  id = " counter " >
+        < h2 >
+            Tempo restante em 2021
+        </ h2 >    
+        
+            < h2  class = " box " id = " days " > </ h2 >
+            < h2  class = " box " id = " hours " > </ h2 >
+            < h2  class = " box " id = " minutes " > </ h2 >
+
+    </ div >
+    
+
+
+
+
+< script >
+    function  CountDownTimer   ( date )  {
+    left_days  =  document . getElementById ( "dias" ) ;
+    left_hours  =  document . getElementById ( "horas" ) ;
+    left_minutes  =  document . getElementById ( "minutos" ) ;
+
+    fim  =  nova  data ( data ) ;
+    _segundo  =  1000 ;
+    _minuto  =  _segundo  *  60 ;
+    _hora  =  _minuto  *  60 ;
+    _dia  =  _horas  *  24 ;
+    }
+    function  showRemaining  ( ) {
+    agora  =  nova  data ( ) ;
+    distância  =  fim  -  agora ;
+    distance2  =  new  Date ( "01/01/2021 00:00 AM" )  -  agora
+    if  ( distância  <=  0  ) {
+      clearInterval  ( temporizador )
+      documento . getElementById ( "contador" ) . innerHTML  =  "<h2> Nada! Acabou <h2>" ;
+      Retorna
+    }
+    else  if  ( distance2  >  0   ) {
+      clearInterval  ( temporizador )
+      documento . getElementById ( "contador" ) . innerHTML  =   "<h2> 2021 Não começou ainda! </h2>" ;
+      Retorna
+    } 
+    dias  =  matemática . andar ( distância  /  _dia )
+    horas  =  matemática . andar ( ( distância  %  _day )  /  _hour )
+    minutos  =  matemática . andar ( ( distância  %  _hour )  /  _minuto )
+    left_days . innerHTML  =  dias  +  "dias"
+    left_hours . innerHTML  =  horas  +  "horas"
+    left_minutes . innerHTML  =  minutos  +  "minutos"
+    }
+    
+
+timer  =  setInterval  ( showRemaining ,  1 ) 
+CountDownTimer (  "01/01/2022 00:00 AM" )
+</ script >
+</ body >
+</ html >
